@@ -545,7 +545,6 @@
             gl.frontFace(gl.CCW);
             gl.enable(gl.CULL_FACE);
             gl.depthMask(true);
-            gl.colorMask(true, true, true, true);
 
             var i;
             var len;
@@ -646,8 +645,6 @@
                     gl.blendFuncSeparate(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA, gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
                 }
 
-                gl.colorMask(true, true, true, true);
-
                 numOutlinedObjects = 0;
 
                 clearStateTracking();
@@ -664,7 +661,6 @@
                 // Transparent outlined objects are not supported yet
 
                 gl.disable(gl.BLEND);
-                gl.colorMask(true, true, true, false);
             }
 
             var endTime = Date.now();
