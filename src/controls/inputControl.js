@@ -572,7 +572,7 @@
                         }
                         var d = delta / Math.abs(delta);
                         vZoom = -d * getZoomRate() * mouseZoomRate;
-                    });
+                    }, {passive: true});
 
                 })();
 
@@ -641,7 +641,7 @@
 
                         event.preventDefault();
                         event.stopPropagation();
-                    });
+                    }, {passive: true});
 
                     overlay.addEventListener("touchmove", function (event) {
 
@@ -690,7 +690,7 @@
 
                         event.preventDefault();
                         event.stopPropagation();
-                    });
+                    }, {passive: true});
 
                 })();
 
