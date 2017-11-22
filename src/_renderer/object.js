@@ -34,11 +34,6 @@
         this.program = null;
 
         /**
-         * State for the xeogl.renderer.Stage that this object was compiled from, used for (re)computing #sortKey and visibility cull
-         */
-        this.stage = null;
-
-        /**
          * State for the xeogl.renderer.Modes that this object was compiled from, used for visibility cull
          */
         this.modes = null;
