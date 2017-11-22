@@ -198,8 +198,6 @@
             /**
              * The PlaneGeometry's level-of-detail factor.
              *
-             * Fires a {{#crossLink "PlaneGeometry/lod:event"}}{{/crossLink}} event on change.
-             *
              * @property lod
              * @default 1
              * @type Number
@@ -222,14 +220,6 @@
                     this._lod = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this PlaneGeometry's {{#crossLink "PlaneGeometry/lod:property"}}{{/crossLink}} property changes.
-                     * @event lod
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("lod", this._lod);
                 },
 
                 get: function () {
@@ -239,8 +229,6 @@
 
             /**
              * 3D point indicating the center position of this PlaneGeometry.
-             *
-             * Fires an {{#crossLink "PlaneGeometry/center:event"}}{{/crossLink}} event on change.
              *
              * @property center
              * @default [0,0,0]
@@ -253,13 +241,6 @@
                     (this._center = this._center || new xeogl.math.vec3()).set(value || [0, 0, 0]);
 
                     this._needUpdate();
-
-                    /**
-                     Fired whenever this PlaneGeometry's {{#crossLink "PlaneGeometry/center:property"}}{{/crossLink}} property changes.
-                     @event center
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("center", this._center);
                 },
 
                 get: function () {
@@ -269,8 +250,6 @@
 
             /**
              * The PlaneGeometry's dimension on the X-axis.
-             *
-             * Fires a {{#crossLink "PlaneGeometry/xSize:event"}}{{/crossLink}} event on change.
              *
              * @property xSize
              * @default 1
@@ -294,14 +273,6 @@
                     this._xSize = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this PlaneGeometry's {{#crossLink "PlaneGeometry/xSize:property"}}{{/crossLink}} property changes.
-                     * @event xSize
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("xSize", this._xSize);
                 },
 
                 get: function () {
@@ -311,8 +282,6 @@
 
             /**
              * The PlaneGeometry's dimension on the Y-axis.
-             *
-             * Fires a {{#crossLink "PlaneGeometry/zSize:event"}}{{/crossLink}} event on change.
              *
              * @property zSize
              * @default 1.0
@@ -336,14 +305,6 @@
                     this._zSize = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this PlaneGeometry's {{#crossLink "PlaneGeometry/zSize:property"}}{{/crossLink}} property changes.
-                     * @event zSize
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("zSize", this._zSize);
                 },
 
                 get: function () {
@@ -353,8 +314,6 @@
 
             /**
              * The PlaneGeometry's number of segments on the X-axis.
-             *
-             * Fires a {{#crossLink "PlaneGeometry/xSegments:event"}}{{/crossLink}} event on change.
              *
              * @property xSegments
              * @default 1
@@ -378,14 +337,6 @@
                     this._xSegments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this PlaneGeometry's {{#crossLink "PlaneGeometry/xSegments:property"}}{{/crossLink}} property changes.
-                     * @event xSegments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("xSegments", this._xSegments);
                 },
 
                 get: function () {
@@ -395,8 +346,6 @@
 
             /**
              * The PlaneGeometry's number of segments on the Y-axis.
-             *
-             * Fires a {{#crossLink "PlaneGeometry/zSegments:event"}}{{/crossLink}} event on change.
              *
              * @property zSegments
              * @default 1
@@ -420,14 +369,6 @@
                     this._zSegments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this PlaneGeometry's {{#crossLink "PlaneGeometry/zSegments:property"}}{{/crossLink}} property changes.
-                     * @event zSegments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("zSegments", this._zSegments);
                 },
 
                 get: function () {

@@ -166,8 +166,8 @@
             this._onParentDestroyed = null;
 
             this._matrix = xeogl.math.identityMat4(xeogl.math.mat4());
-            this._leafMatrix = xeogl.math.mat4();
-            this._leafNormalMatrix = xeogl.math.mat4();
+            this._leafMatrix = null;
+            this._leafNormalMatrix = null;
 
             this._leafMatrixDirty = true;
             this._leafNormalMatrixDirty = true;
@@ -197,6 +197,8 @@
             this.parent = cfg.parent;
             this.matrix = cfg.matrix;
             this.postMultiply = cfg.postMultiply;
+
+            xeogl.stats.memory.transforms++;
         },
 
         _parentUpdated: function () {
@@ -222,6 +224,10 @@
 
             if (!this._leafMatrixDirty) {
                 return;
+            }
+
+            if (!this._leafMatrix) {
+                this._leafMatrix = xeogl.math.mat4();
             }
 
             if (this._build && this._buildScheduled) {
@@ -259,6 +265,10 @@
 
             if (this._leafMatrixDirty) {
                 this._buildLeafMatrix();
+            }
+
+            if (!this._leafNormalMatrix) {
+                this._leafNormalMatrix = xeogl.math.mat4();
             }
 
             xeogl.math.inverseMat4(this._leafMatrix, this._leafNormalMatrix);
@@ -449,6 +459,7 @@
                 this._parent.off(this._onParentUpdated);
                 this._parent.off(this._onParentDestroyed);
             }
+            xeogl.stats.memory.transforms--;
         }
     });
 

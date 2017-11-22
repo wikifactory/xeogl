@@ -301,6 +301,8 @@
 
         _init: function (cfg) {
 
+            this._super(cfg);
+
             this._state = new xeogl.renderer.MetallicMaterial({
                 type: "MetallicMaterial",
                 baseColor: xeogl.math.vec4([1.0, 1.0, 1.0]),
@@ -387,8 +389,6 @@
 
              Multiplies by the RGB components of {{#crossLink "MetallicMaterial/baseColorMap:property"}}{{/crossLink}}.
 
-             Fires a {{#crossLink "MetallicMaterial/baseColor:event"}}{{/crossLink}} event on change.
-
              @property baseColor
              @default [1.0, 1.0, 1.0]
              @type Float32Array
@@ -418,14 +418,6 @@
                     }
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/baseColor:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event baseColor
-                     * @param value {Float32Array} The property's new value
-                     */
-                    this.fire("baseColor", this._state.baseColor);
                 },
 
                 get: function () {
@@ -441,8 +433,6 @@
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this MetallicMaterial.
 
-             Fires a {{#crossLink "MetallicMaterial/baseColorMap:event"}}{{/crossLink}} event on change.
-
              @property baseColorMap
              @default undefined
              @type {Texture}
@@ -450,13 +440,6 @@
             baseColorMap: {
 
                 set: function (texture) {
-
-                    /**
-                     Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/baseColorMap:property"}}{{/crossLink}} property changes.
-
-                     @event baseColorMap
-                     @param value Number The property's new value
-                     */
                     this._attachComponent("xeogl.Texture", "baseColorMap", texture);
                 },
 
@@ -472,8 +455,6 @@
 
              Multiplies by the *R* component of {{#crossLink "MetallicMaterial/metallicMap:property"}}{{/crossLink}}
              and the *A* component of {{#crossLink "MetallicMaterial/metalRoughnessMap:property"}}{{/crossLink}}.
-
-             Fires a {{#crossLink "MetallicMaterial/metallic:event"}}{{/crossLink}} event on change.
 
              @property metallic
              @default 1.0
@@ -492,14 +473,6 @@
                     this._state.metallic = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/metallic:property"}}{{/crossLink}} property changes.
-
-                     @event metallic
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("metallic", this._state.metallic);
                 },
 
                 get: function () {
@@ -514,8 +487,6 @@
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this MetallicMaterial.
 
-             Fires a {{#crossLink "MetallicMaterial/metallicMap:event"}}{{/crossLink}} event on change.
-
              @property metallicMap
              @default undefined
              @type {Texture}
@@ -523,13 +494,6 @@
             metallicMap: {
 
                 set: function (texture) {
-
-                    /**
-                     Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/metallicMap:property"}}{{/crossLink}} property changes.
-
-                     @event metallicMap
-                     @param value Number The property's new value
-                     */
                     this._attachComponent("xeogl.Texture", "metallicMap", texture);
                 },
 
@@ -544,8 +508,6 @@
              0 is fully smooth, 1 is fully rough.
 
              Multiplies by the *R* component of {{#crossLink "MetallicMaterial/roughnessMap:property"}}{{/crossLink}}.
-
-             Fires a {{#crossLink "MetallicMaterial/roughness:event"}}{{/crossLink}} event on change.
 
              @property roughness
              @default 1.0
@@ -564,14 +526,6 @@
                     this._state.roughness = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/roughness:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event roughness
-                     * @param value {Number} The property's new value
-                     */
-                    this.fire("roughness", this._state.roughness);
                 },
 
                 get: function () {
@@ -586,8 +540,6 @@
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this MetallicMaterial.
 
-             Fires a {{#crossLink "MetallicMaterial/roughnessMap:event"}}{{/crossLink}} event on change.
-
              @property roughnessMap
              @default undefined
              @type {Texture}
@@ -595,13 +547,6 @@
             roughnessMap: {
 
                 set: function (texture) {
-
-                    /**
-                     Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/roughnessMap:property"}}{{/crossLink}} property changes.
-
-                     @event roughnessMap
-                     @param value Number The property's new value
-                     */
                     this._attachComponent("xeogl.Texture", "roughnessMap", texture);
                 },
 
@@ -618,8 +563,6 @@
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this MetallicMaterial.
 
-             Fires a {{#crossLink "MetallicMaterial/metallicRoughnessMap:event"}}{{/crossLink}} event on change.
-
              @property metallicRoughnessMap
              @default undefined
              @type {Texture}
@@ -627,13 +570,6 @@
             metallicRoughnessMap: {
 
                 set: function (texture) {
-
-                    /**
-                     Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/metallicRoughnessMap:property"}}{{/crossLink}} property changes.
-
-                     @event metallicRoughnessMap
-                     @param value Number The property's new value
-                     */
                     this._attachComponent("xeogl.Texture", "metallicRoughnessMap", texture);
                 },
 
@@ -644,8 +580,6 @@
 
             /**
              Factor in the range [0..1] indicating specular Fresnel value.
-
-             Fires a {{#crossLink "MetallicMaterial/specularF0:event"}}{{/crossLink}} event on change.
 
              @property specularF0
              @default 0.0
@@ -664,14 +598,6 @@
                     this._state.specularF0 = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/specularF0:property"}}{{/crossLink}} property changes.
-
-                     @event specularF0
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("specularF0", this._state.specularF0);
                 },
 
                 get: function () {
@@ -683,9 +609,6 @@
              RGB emissive color of this MetallicMaterial.
 
              Multiplies by {{#crossLink "MetallicMaterial/emissiveMap:property"}}{{/crossLink}}.
-
-             Fires a {{#crossLink "MetallicMaterial/emissive:event"}}{{/crossLink}} event on change.
-
              @property emissive
              @default [0.0, 0.0, 0.0]
              @type Float32Array
@@ -715,14 +638,6 @@
                     }
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/emissive:property"}}{{/crossLink}} property changes.
-
-                     @event emissive
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("emissive", this._state.emissive);
                 },
 
                 get: function () {
@@ -736,8 +651,6 @@
              Multiplies by the {{#crossLink "MetallicMaterial/emissive:property"}}{{/crossLink}} property.
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this MetallicMaterial.
-
-             Fires a {{#crossLink "MetallicMaterial/emissiveMap:event"}}{{/crossLink}} event on change.
 
              @property emissiveMap
              @default undefined
@@ -767,8 +680,6 @@
              Within shaders, multiplies by the specular and diffuse light reflected by surfaces.
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this MetallicMaterial.
-
-             Fires a {{#crossLink "MetallicMaterial/occlusionMap:event"}}{{/crossLink}} event on change.
 
              @property occlusionMap
              @default undefined
@@ -801,8 +712,6 @@
              The value of {{#crossLink "MetallicMaterial/alphaMode:property"}}{{/crossLink}} indicates how alpha is
              interpreted when rendering.
 
-             Fires an {{#crossLink "MetallicMaterial/alpha:event"}}{{/crossLink}} event on change.
-
              @property alpha
              @default 1.0
              @type Number
@@ -820,14 +729,6 @@
                     this._state.alpha = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/alpha:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event alpha
-                     * @param value {Number} The property's new value
-                     */
-                    this.fire("alpha", this._state.alpha);
                 },
 
                 get: function () {
@@ -841,8 +742,6 @@
              The *R* component multiplies by the {{#crossLink "MetallicMaterial/alpha:property"}}{{/crossLink}} property.
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this MetallicMaterial.
-
-             Fires an {{#crossLink "MetallicMaterial/alphaMap:event"}}{{/crossLink}} event on change.
 
              @property alphaMap
              @default undefined
@@ -870,8 +769,6 @@
              RGB tangent-space normal map {{#crossLink "Texture"}}{{/crossLink}}.
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this MetallicMaterial.
-
-             Fires a {{#crossLink "MetallicMaterial/normalMap:event"}}{{/crossLink}} event on change.
 
              @property normalMap
              @default undefined
@@ -906,8 +803,6 @@
              * "mask" - The rendered output is either fully opaque or fully transparent depending on the alpha and {{#crossLink "MetallicMaterial/alphaCutoff:property"}}{{/crossLink}}.
              * "blend" - The alpha value is used to composite the source and destination areas. The rendered output is combined with the background using the normal painting operation (i.e. the Porter and Duff over operator).
 
-             Fires an {{#crossLink "MetallicMaterial/alphaMode:event"}}{{/crossLink}} event on change.
-
              @property alphaMode
              @default "opaque"
              @type {String}
@@ -934,14 +829,6 @@
                         this._state.alphaMode = value;
 
                         this._renderer.imageDirty = true;
-
-                        /**
-                         Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/alphaMode:property"}}{{/crossLink}} property changes.
-
-                         @event alphaMode
-                         @param value {Number} The property's new value
-                         */
-                        this.fire("alphaMode", this._state.alphaMode);
                     },
                     get: function () {
                         return modeNames[this._state.alphaMode];
@@ -961,8 +848,6 @@
              {{#crossLink "MetallicMaterial/alpha:property"}}{{/crossLink}} and
              {{#crossLink "MetallicMaterial/alphaMap:property"}}{{/crossLink}} properties.
 
-             Fires an {{#crossLink "MetallicMaterial/alphaCutoff:event"}}{{/crossLink}} event on change.
-
              @property alphaCutoff
              @default 0.5
              @type {Number}
@@ -979,14 +864,6 @@
                     }
 
                     this._state.alphaCutoff = alphaCutoff;
-
-                    /**
-                     Fired whenever this MetallicMaterial's {{#crossLink "MetallicMaterial/look:property"}}{{/crossLink}} property changes.
-
-                     @event alphaCutoff
-                     @param value {Number} The property's new value
-                     */
-                    this.fire("alphaCutoff", this._state.alphaCutoff);
                 },
                 get: function () {
                     return this._state.alphaCutoff;
@@ -998,8 +875,6 @@
 
              The backfaces will belong to {{#crossLink "Geometry"}}{{/crossLink}} compoents that are also attached to
              the {{#crossLink "Entity"}}Entities{{/crossLink}}.
-
-             Fires a {{#crossLink "MetallicMaterial/backfaces:event"}}{{/crossLink}} event on change.
 
              @property backfaces
              @default false
@@ -1018,14 +893,6 @@
                     this._state.backfaces = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this MetallicMaterial' {{#crossLink "MetallicMaterial/backfaces:property"}}{{/crossLink}} property changes.
-
-                     @event backfaces
-                     @param value The property's new value
-                     */
-                    this.fire("backfaces", this._state.backfaces);
                 },
 
                 get: function () {
@@ -1038,8 +905,6 @@
 
              The faces will belong to {{#crossLink "Geometry"}}{{/crossLink}} components that are also attached to
              the {{#crossLink "Entity"}}Entities{{/crossLink}}.
-
-             Fires a {{#crossLink "MetallicMaterial/frontface:event"}}{{/crossLink}} event on change.
 
              @property frontface
              @default "ccw"
@@ -1058,14 +923,6 @@
                     this._state.frontface = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this MetallicMaterial' {{#crossLink "MetallicMaterial/frontface:property"}}{{/crossLink}} property changes.
-
-                     @event frontface
-                     @param value The property's new value
-                     */
-                    this.fire("frontface", this._state.frontface ? "ccw" : "cw");
                 },
 
                 get: function () {
@@ -1222,6 +1079,7 @@
         },
 
         _destroy: function () {
+            this._super();
             this._state.destroy();
         }
     });

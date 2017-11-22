@@ -294,6 +294,8 @@
 
         _init: function (cfg) {
 
+            this._super(cfg);
+
             this._state = new xeogl.renderer.SpecularMaterial({
                 type: "SpecularMaterial",
                 diffuse: xeogl.math.vec4([1.0, 1.0, 1.0]),
@@ -380,8 +382,6 @@
 
              Multiplies by the *RGB* components of {{#crossLink "SpecularMaterial/diffuseMap:property"}}{{/crossLink}}.
 
-             Fires a {{#crossLink "SpecularMaterial/diffuse:event"}}{{/crossLink}} event on change.
-
              @property diffuse
              @default [1.0, 1.0, 1.0]
              @type Float32Array
@@ -411,14 +411,6 @@
                     }
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/diffuse:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event diffuse
-                     * @param value {Float32Array} The property's new value
-                     */
-                    this.fire("diffuse", this._state.diffuse);
                 },
 
                 get: function () {
@@ -433,8 +425,6 @@
              while the *A* component, if present, multiplies by the {{#crossLink "SpecularMaterial/alpha:property"}}{{/crossLink}} property.
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this SpecularMaterial.
-
-             Fires a {{#crossLink "SpecularMaterial/diffuseMap:event"}}{{/crossLink}} event on change.
 
              @property diffuseMap
              @default undefined
@@ -463,8 +453,6 @@
 
              Multiplies by the {{#crossLink "SpecularMaterial/specularMap:property"}}{{/crossLink}}
              and the *A* component of {{#crossLink "SpecularMaterial/specularGlossinessMap:property"}}{{/crossLink}}.
-
-             Fires a {{#crossLink "SpecularMaterial/specular:event"}}{{/crossLink}} event on change.
 
              @property specular
              @default [1.0, 1.0, 1.0]
@@ -495,14 +483,6 @@
                     }
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/specular:property"}}{{/crossLink}} property changes.
-
-                     @event specular
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("specular", this._state.specular);
                 },
 
                 get: function () {
@@ -516,8 +496,6 @@
              Multiplies by the {{#crossLink "SpecularMaterial/specular:property"}}{{/crossLink}} property.
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this SpecularMaterial.
-
-             Fires a {{#crossLink "SpecularMaterial/specularMap:event"}}{{/crossLink}} event on change.
 
              @property specularMap
              @default undefined
@@ -549,8 +527,6 @@
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this SpecularMaterial.
 
-             Fires a {{#crossLink "SpecularMaterial/specularGlossinessMap:event"}}{{/crossLink}} event on change.
-
              @property specularGlossinessMap
              @default undefined
              @type {Texture}
@@ -581,8 +557,6 @@
              Multiplies by the *R* component of {{#crossLink "SpecularMaterial/glossinessMap:property"}}{{/crossLink}}
              and the *A* component of {{#crossLink "SpecularMaterial/specularGlossinessMap:property"}}{{/crossLink}}.
 
-             Fires a {{#crossLink "SpecularMaterial/glossiness:event"}}{{/crossLink}} event on change.
-
              @property glossiness
              @default 1.0
              @type Number
@@ -600,14 +574,6 @@
                     this._state.glossiness = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/glossiness:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event glossiness
-                     * @param value {Number} The property's new value
-                     */
-                    this.fire("glossiness", this._state.glossiness);
                 },
 
                 get: function () {
@@ -621,8 +587,6 @@
              The *R* component multiplies by the {{#crossLink "SpecularMaterial/glossiness:property"}}{{/crossLink}} property.
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this SpecularMaterial.
-
-             Fires a {{#crossLink "SpecularMaterial/glossinessMap:event"}}{{/crossLink}} event on change.
 
              @property glossinessMap
              @default undefined
@@ -649,8 +613,6 @@
             /**
              Factor in the range [0..1] indicating amount of specular Fresnel.
 
-             Fires a {{#crossLink "SpecularMaterial/specularF0:event"}}{{/crossLink}} event on change.
-
              @property specularF0
              @default 0.0
              @type Number
@@ -668,14 +630,6 @@
                     this._state.specularF0 = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/specularF0:property"}}{{/crossLink}} property changes.
-
-                     @event specularF0
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("specularF0", this._state.specularF0);
                 },
 
                 get: function () {
@@ -687,8 +641,6 @@
              RGB emissive color of this SpecularMaterial.
 
              Multiplies by {{#crossLink "SpecularMaterial/emissiveMap:property"}}{{/crossLink}}.
-
-             Fires a {{#crossLink "SpecularMaterial/emissive:event"}}{{/crossLink}} event on change.
 
              @property emissive
              @default [0.0, 0.0, 0.0]
@@ -719,14 +671,6 @@
                     }
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/emissive:property"}}{{/crossLink}} property changes.
-
-                     @event emissive
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("emissive", this._state.emissive);
                 },
 
                 get: function () {
@@ -740,8 +684,6 @@
              Multiplies by the {{#crossLink "SpecularMaterial/emissive:property"}}{{/crossLink}} property.
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this SpecularMaterial.
-
-             Fires a {{#crossLink "SpecularMaterial/emissiveMap:event"}}{{/crossLink}} event on change.
 
              @property emissiveMap
              @default undefined
@@ -773,8 +715,6 @@
              Multiplies by the *R* component of {{#crossLink "SpecularMaterial/alphaMap:property"}}{{/crossLink}} and
              the *A* component, if present, of {{#crossLink "SpecularMaterial/diffuseMap:property"}}{{/crossLink}}.
 
-             Fires an {{#crossLink "SpecularMaterial/alpha:event"}}{{/crossLink}} event on change.
-
              @property alpha
              @default 1.0
              @type Number
@@ -792,14 +732,6 @@
                     this._state.alpha = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/alpha:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event alpha
-                     * @param value {Number} The property's new value
-                     */
-                    this.fire("alpha", this._state.alpha);
                 },
 
                 get: function () {
@@ -814,8 +746,6 @@
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this SpecularMaterial.
 
-             Fires an {{#crossLink "SpecularMaterial/alphaMap:event"}}{{/crossLink}} event on change.
-
              @property alphaMap
              @default undefined
              @type {Texture}
@@ -823,13 +753,6 @@
             alphaMap: {
 
                 set: function (texture) {
-
-                    /**
-                     Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/alphaMap:property"}}{{/crossLink}} property changes.
-
-                     @event alphaMap
-                     @param value Number The property's new value
-                     */
                     this._attachComponent("xeogl.Texture", "alphaMap", texture);
                 },
 
@@ -843,8 +766,6 @@
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this SpecularMaterial.
 
-             Fires a {{#crossLink "PhongMaterial/normalMap:event"}}{{/crossLink}} event on change.
-
              @property normalMap
              @default undefined
              @type {Texture}
@@ -852,13 +773,6 @@
             normalMap: {
 
                 set: function (texture) {
-
-                    /**
-                     Fired whenever this PhongMaterial's {{#crossLink "PhongMaterial/normalMap:property"}}{{/crossLink}} property changes.
-
-                     @event normalMap
-                     @param value Number The property's new value
-                     */
                     this._attachComponent("xeogl.Texture", "normalMap", texture);
                 },
 
@@ -874,8 +788,6 @@
 
              Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this SpecularMaterial.
 
-             Fires a {{#crossLink "SpecularMaterial/occlusionMap:event"}}{{/crossLink}} event on change.
-
              @property occlusionMap
              @default undefined
              @type {Texture}
@@ -883,13 +795,6 @@
             occlusionMap: {
 
                 set: function (texture) {
-
-                    /**
-                     Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/occlusionMap:property"}}{{/crossLink}} property changes.
-
-                     @event occlusionMap
-                     @param value Number The property's new value
-                     */
                     this._attachComponent("xeogl.Texture", "occlusionMap", texture);
                 },
 
@@ -907,9 +812,7 @@
 
              * "opaque" - The alpha value is ignored and the rendered output is fully opaque.
              * "mask" - The rendered output is either fully opaque or fully transparent depending on the alpha value and the specified alpha cutoff value.
-             * "blend" - The alpha value is used to composite the source and destination areas. The rendered output is combined with the background using the normal painting operation (i.e. the Porter and Duff over operator).
-
-             Fires an {{#crossLink "SpecularMaterial/alphaMode:event"}}{{/crossLink}} event on change.
+             * "blend" - The alpha value is used to composite the source and destination areas. The rendered output is combined with the background using the normal painting operation (i.e. the Porter and Duff over operator)
 
              @property alphaMode
              @default "opaque"
@@ -937,14 +840,6 @@
                         this._state.alphaMode = value;
 
                         this._renderer.imageDirty = true;
-
-                        /**
-                         Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/alphaMode:property"}}{{/crossLink}} property changes.
-
-                         @event alphaMode
-                         @param value {Number} The property's new value
-                         */
-                        this.fire("alphaMode", this._state.alphaMode);
                     },
                     get: function () {
                         return modeNames[this._state.alphaMode];
@@ -964,8 +859,6 @@
              {{#crossLink "SpecularMaterial/alpha:property"}}{{/crossLink}} and
              {{#crossLink "SpecularMaterial/alphaMap:property"}}{{/crossLink}} properties.
 
-             Fires an {{#crossLink "SpecularMaterial/alphaCutoff:event"}}{{/crossLink}} event on change.
-
              @property alphaCutoff
              @default 0.5
              @type {Number}
@@ -982,14 +875,6 @@
                     }
 
                     this._state.alphaCutoff = alphaCutoff;
-
-                    /**
-                     Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/look:property"}}{{/crossLink}} property changes.
-
-                     @event alphaCutoff
-                     @param value {Number} The property's new value
-                     */
-                    this.fire("alphaCutoff", this._state.alphaCutoff);
                 },
                 get: function () {
                     return this._state.alphaCutoff;
@@ -1002,8 +887,6 @@
 
              The backfaces will belong to {{#crossLink "Geometry"}}{{/crossLink}} compoents that are also attached to
              the {{#crossLink "Entity"}}Entities{{/crossLink}}.
-
-             Fires a {{#crossLink "PhongMaterial/backfaces:event"}}{{/crossLink}} event on change.
 
              @property backfaces
              @default false
@@ -1022,14 +905,6 @@
                     this._state.backfaces = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/backfaces:property"}}{{/crossLink}} property changes.
-
-                     @event backfaces
-                     @param value The property's new value
-                     */
-                    this.fire("backfaces", this._state.backfaces);
                 },
 
                 get: function () {
@@ -1042,8 +917,6 @@
 
              The faces will belong to {{#crossLink "Geometry"}}{{/crossLink}} components that are also attached to
              the {{#crossLink "Entity"}}Entities{{/crossLink}}.
-
-             Fires a {{#crossLink "SpecularMaterial/frontface:event"}}{{/crossLink}} event on change.
 
              @property frontface
              @default "ccw"
@@ -1062,14 +935,6 @@
                     this._state.frontface = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this SpecularMaterial's {{#crossLink "SpecularMaterial/frontface:property"}}{{/crossLink}} property changes.
-
-                     @event frontface
-                     @param value The property's new value
-                     */
-                    this.fire("frontface", this._state.frontface ? "ccw" : "cw");
                 },
 
                 get: function () {
@@ -1230,6 +1095,7 @@
         },
 
         _destroy: function () {
+            this._super();
             this._state.destroy();
         }
     });

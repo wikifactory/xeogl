@@ -189,8 +189,6 @@
             /**
              * The TorusGeometry's level-of-detail factor.
              *
-             * Fires a {{#crossLink "TorusGeometry/lod:event"}}{{/crossLink}} event on change.
-             *
              * @property lod
              * @default 1
              * @type Number
@@ -213,14 +211,6 @@
                     this._lod = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this TorusGeometry's {{#crossLink "TorusGeometry/lod:property"}}{{/crossLink}} property changes.
-                     * @event lod
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("lod", this._lod);
                 },
 
                 get: function () {
@@ -230,8 +220,6 @@
 
             /**
              * 3D point indicating the center position of this TorusGeometry.
-             *
-             * Fires an {{#crossLink "TorusGeometry/center:event"}}{{/crossLink}} event on change.
              *
              * @property center
              * @default [0,0,0]
@@ -244,13 +232,6 @@
                     (this._center = this._center || new xeogl.math.vec3()).set(value || [0, 0, 0]);
 
                     this._needUpdate();
-
-                    /**
-                     Fired whenever this TorusGeometry's {{#crossLink "TorusGeometry/center:property"}}{{/crossLink}} property changes.
-                     @event center
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("center", this._center);
                 },
 
                 get: function () {
@@ -260,8 +241,6 @@
 
             /**
              * The overall radius of the TorusGeometry.
-             *
-             * Fires a {{#crossLink "TorusGeometry/radius:event"}}{{/crossLink}} event on change.
              *
              * @property radius
              * @default 1
@@ -285,14 +264,6 @@
                     this._radius = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this TorusGeometry's {{#crossLink "TorusGeometry/radius:property"}}{{/crossLink}} property changes.
-                     * @event radius
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("radius", this._radius);
                 },
 
                 get: function () {
@@ -303,8 +274,6 @@
 
             /**
              * The tube radius of the TorusGeometry.
-             *
-             * Fires a {{#crossLink "TorusGeometry/tube:event"}}{{/crossLink}} event on change.
              *
              * @property tube
              * @default 0.3
@@ -328,14 +297,6 @@
                     this._tube = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this TorusGeometry's {{#crossLink "TorusGeometry/tube:property"}}{{/crossLink}} property changes.
-                     * @event tube
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("tube", this._tube);
                 },
 
                 get: function () {
@@ -345,8 +306,6 @@
 
             /**
              * The number of radial segments that make up the TorusGeometry.
-             *
-             * Fires a {{#crossLink "TorusGeometry/radialSegments:event"}}{{/crossLink}} event on change.
              *
              * @property radialSegments
              * @default 32
@@ -370,14 +329,6 @@
                     this._radialSegments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this TorusGeometry's {{#crossLink "TorusGeometry/radialSegments:property"}}{{/crossLink}} property changes.
-                     * @event radialSegments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("radialSegments", this._radialSegments);
                 },
 
                 get: function () {
@@ -388,8 +339,6 @@
 
             /**
              * The number of tubular segments that make up the TorusGeometry.
-             *
-             * Fires a {{#crossLink "TorusGeometry/tubeSegments:event"}}{{/crossLink}} event on change.
              *
              * @property tubeSegments
              * @default 24
@@ -413,14 +362,6 @@
                     this._tubeSegments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this TorusGeometry's {{#crossLink "TorusGeometry/tubeSegments:property"}}{{/crossLink}} property changes.
-                     * @event tubeSegments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("tubeSegments", this._tubeSegments);
                 },
 
                 get: function () {
@@ -430,8 +371,6 @@
 
             /**
              * The length of the TorusGeometry's arc in radians, where Math.PI*2 is a closed torus.
-             *
-             * Fires a {{#crossLink "TorusGeometry/arc:event"}}{{/crossLink}} event on change.
              *
              * @property arc
              * @default Math.PI * 2
@@ -455,14 +394,6 @@
                     this._arc = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this TorusGeometry's {{#crossLink "TorusGeometry/arc:property"}}{{/crossLink}} property changes.
-                     * @event arc
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("arc", this._arc);
                 },
 
                 get: function () {

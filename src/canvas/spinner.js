@@ -111,8 +111,6 @@
             /**
              * Whether Spinner shows while images are loading for components like {{#crossLink "Texture"}}{{/crossLink}}.
              *
-             * Fires a {{#crossLink "Spinner/textures:event"}}{{/crossLink}} event on change.
-             *
              * @property textures
              * @default true
              * @type Boolean
@@ -124,14 +122,6 @@
                     value = value !== false;
 
                     this._textures = value;
-                    
-                    /**
-                     * Fired whenever this Spinner's  {{#crossLink "Spinner/textures:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event textures
-                     * @param value The property's new value
-                     */
-                    this.fire("textures", this._textures);
                 },
 
                 get: function () {

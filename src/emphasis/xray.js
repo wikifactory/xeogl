@@ -64,8 +64,6 @@
             /**
              * The XRay's thickness in pixels.
              *
-             * Fires a {{#crossLink "XRay/thickness:event"}}{{/crossLink}} event on change.
-             *
              * @property thickness
              * @default 15
              * @type Number
@@ -88,14 +86,6 @@
                     this._state.thickness = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this XRay's  {{#crossLink "XRay/thickness:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event thickness
-                     * @param value The property's new value
-                     */
-                    this.fire("thickness", this._state.thickness);
                 },
 
                 get: function () {
@@ -106,9 +96,7 @@
             /**
              The XRay's RGB color.
 
-             Fires a {{#crossLink "XRay/color:event"}}{{/crossLink}} event on change.
-
-             @property color
+              @property color
              @default [1.0, 1.0, 0.0]
              @type Float32Array
              */
@@ -137,14 +125,6 @@
                     }
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this XRay's {{#crossLink "XRay/color:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event color
-                     * @param value {Float32Array} The property's new value
-                     */
-                    this.fire("color", this._state.color);
                 },
 
                 get: function () {

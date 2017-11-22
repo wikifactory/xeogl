@@ -287,8 +287,6 @@
             /**
              * The CylinderGeometry's level-of-detail factor.
              *
-             * Fires a {{#crossLink "CylinderGeometry/lod:event"}}{{/crossLink}} event on change.
-             *
              * @property lod
              * @default 1
              * @type Number
@@ -311,14 +309,6 @@
                     this._lod = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this CylinderGeometry's {{#crossLink "CylinderGeometry/lod:property"}}{{/crossLink}} property changes.
-                     * @event lod
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("lod", this._lod);
                 },
 
                 get: function () {
@@ -328,8 +318,6 @@
 
             /**
              * 3D point indicating the center position of this CylinderGeometry.
-             *
-             * Fires an {{#crossLink "CylinderGeometry/center:event"}}{{/crossLink}} event on change.
              *
              * @property center
              * @default [0,0,0]
@@ -342,13 +330,6 @@
                     (this._center = this._center || new xeogl.math.vec3()).set(value || [0, 0, 0]);
 
                     this._needUpdate();
-
-                    /**
-                     Fired whenever this CylinderGeometry's {{#crossLink "CylinderGeometry/center:property"}}{{/crossLink}} property changes.
-                     @event center
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("center", this._center);
                 },
 
                 get: function () {
@@ -358,8 +339,6 @@
 
             /**
              * The CylinderGeometry's top radius.
-             *
-             * Fires a {{#crossLink "CylinderGeometry/radiusTop:event"}}{{/crossLink}} event on change.
              *
              * @property radiusTop
              * @default 1
@@ -383,14 +362,6 @@
                     this._radiusTop = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this CylinderGeometry's {{#crossLink "CylinderGeometry/radiusTop:property"}}{{/crossLink}} property changes.
-                     * @event radiusTop
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("radiusTop", this._radiusTop);
                 },
 
                 get: function () {
@@ -400,8 +371,6 @@
 
             /**
              * The CylinderGeometry's bottom radius.
-             *
-             * Fires a {{#crossLink "CylinderGeometry/radiusBottom:event"}}{{/crossLink}} event on change.
              *
              * @property radiusBottom
              * @default 1
@@ -425,14 +394,6 @@
                     this._radiusBottom = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this CylinderGeometry's {{#crossLink "CylinderGeometry/radiusBottom:property"}}{{/crossLink}} property changes.
-                     * @event radiusBottom
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("radiusBottom", this._radiusBottom);
                 },
 
                 get: function () {
@@ -442,8 +403,6 @@
 
             /**
              * The CylinderGeometry's height.
-             *
-             * Fires a {{#crossLink "CylinderGeometry/height:event"}}{{/crossLink}} event on change.
              *
              * @property height
              * @default 1
@@ -467,14 +426,6 @@
                     this._height = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this CylinderGeometry's {{#crossLink "CylinderGeometry/height:property"}}{{/crossLink}} property changes.
-                     * @event height
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("height", this._height);
                 },
 
                 get: function () {
@@ -484,8 +435,6 @@
 
             /**
              * The CylinderGeometry's radial segments.
-             *
-             * Fires a {{#crossLink "CylinderGeometry/radialSegments:event"}}{{/crossLink}} event on change.
              *
              * @property radialSegments
              * @default 60
@@ -509,14 +458,6 @@
                     this._radialSegments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this CylinderGeometry's {{#crossLink "CylinderGeometry/radialSegments:property"}}{{/crossLink}} property changes.
-                     * @event radialSegments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("radialSegments", this._radialSegments);
                 },
 
                 get: function () {
@@ -526,8 +467,6 @@
 
             /**
              * The CylinderGeometry's height segments.
-             *
-             * Fires a {{#crossLink "CylinderGeometry/heightSegments:event"}}{{/crossLink}} event on change.
              *
              * @property heightSegments
              * @default 1
@@ -551,14 +490,6 @@
                     this._heightSegments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this CylinderGeometry's {{#crossLink "CylinderGeometry/heightSegments:property"}}{{/crossLink}} property changes.
-                     * @event heightSegments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("heightSegments", this._heightSegments);
                 },
 
                 get: function () {
@@ -568,8 +499,6 @@
 
             /**
              * Indicates whether this CylinderGeometry's is open-ended.
-             *
-             * Fires a {{#crossLink "CylinderGeometry/openEnded:event"}}{{/crossLink}} event on change.
              *
              * @property openEnded
              * @default false
@@ -588,14 +517,6 @@
                     this._openEnded = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this CylinderGeometry's {{#crossLink "CylinderGeometry/openEnded:property"}}{{/crossLink}} property changes.
-                     * @event openEnded
-                     * @type Boolean
-                     * @param value The property's new value
-                     */
-                    this.fire("openEnded", this._openEnded);
                 },
 
                 get: function () {

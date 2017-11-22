@@ -183,8 +183,6 @@
             /**
              * The SphereGeometry's level-of-detail factor.
              *
-             * Fires a {{#crossLink "SphereGeometry/lod:event"}}{{/crossLink}} event on change.
-             *
              * @property lod
              * @default 1
              * @type Number
@@ -207,14 +205,6 @@
                     this._lod = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this SphereGeometry's {{#crossLink "SphereGeometry/lod:property"}}{{/crossLink}} property changes.
-                     * @event lod
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("lod", this._lod);
                 },
 
                 get: function () {
@@ -224,8 +214,6 @@
 
             /**
              * 3D point indicating the center position of this SphereGeometry.
-             *
-             * Fires an {{#crossLink "SphereGeometry/center:event"}}{{/crossLink}} event on change.
              *
              * @property center
              * @default [0,0,0]
@@ -238,13 +226,6 @@
                     (this._center = this._center || new xeogl.math.vec3()).set(value || [0, 0, 0]);
 
                     this._needUpdate();
-
-                    /**
-                     Fired whenever this SphereGeometry's {{#crossLink "SphereGeometry/center:property"}}{{/crossLink}} property changes.
-                     @event center
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("center", this._center);
                 },
 
                 get: function () {
@@ -254,8 +235,6 @@
             
             /**
              * The SphereGeometry's radius.
-             *
-             * Fires a {{#crossLink "SphereGeometry/radius:event"}}{{/crossLink}} event on change.
              *
              * @property radius
              * @default 1
@@ -279,14 +258,6 @@
                     this._radius = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this SphereGeometry's {{#crossLink "SphereGeometry/radius:property"}}{{/crossLink}} property changes.
-                     * @event radius
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("radius", this._radius);
                 },
 
                 get: function () {
@@ -297,8 +268,6 @@
 
             /**
              * The SphereGeometry's number of latitudinal bands.
-             *
-             * Fires a {{#crossLink "SphereGeometry/heightSegments:event"}}{{/crossLink}} event on change.
              *
              * @property heightSegments
              * @default 18
@@ -322,14 +291,6 @@
                     this._heightSegments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this SphereGeometry's {{#crossLink "SphereGeometry/heightSegments:property"}}{{/crossLink}} property changes.
-                     * @event heightSegments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("heightSegments", this._heightSegments);
                 },
 
                 get: function () {
@@ -339,8 +300,6 @@
 
             /**
              * The SphereGeometry's number of longitudinal bands.
-             *
-             * Fires a {{#crossLink "SphereGeometry/widthSegments:event"}}{{/crossLink}} event on change.
              *
              * @property widthSegments
              * @default 24
@@ -364,14 +323,6 @@
                     this._widthSegments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this SphereGeometry's {{#crossLink "SphereGeometry/widthSegments:property"}}{{/crossLink}} property changes.
-                     * @event widthSegments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("widthSegments", this._widthSegments);
                 },
 
                 get: function () {

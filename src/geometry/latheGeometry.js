@@ -164,8 +164,6 @@
             /**
              Profile points on this LatheGeometry.
 
-             Fires a {{#crossLink "LatheGeometry/points:event"}}{{/crossLink}} event on change.
-
              @property points
              @default []
              @type Float32Array
@@ -177,14 +175,6 @@
                     this._points = value || [];
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this LatheGeometry's
-                     * {{#crossLink "LatheGeometry/points:property"}}{{/crossLink}} property changes.
-                     * @event points
-                     * @param value The property's new value
-                     */
-                    this.fire("points", this._points);
                 },
 
                 get: function () {
@@ -194,8 +184,6 @@
 
             /**
              * The LatheGeometry's level-of-detail factor.
-             *
-             * Fires a {{#crossLink "LatheGeometry/lod:event"}}{{/crossLink}} event on change.
              *
              * @property lod
              * @default 1
@@ -219,14 +207,6 @@
                     this._lod = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this LatheGeometry's {{#crossLink "LatheGeometry/lod:property"}}{{/crossLink}} property changes.
-                     * @event lod
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("lod", this._lod);
                 },
 
                 get: function () {
@@ -236,8 +216,6 @@
 
             /**
              * Angle at which this LatheGeometry's rotation starts.
-             *
-             * Fires a {{#crossLink "LatheGeometry/phiStart:event"}}{{/crossLink}} event on change.
              *
              * @property phiStart
              * @default 0
@@ -261,14 +239,6 @@
                     this._phiStart = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this LatheGeometry's {{#crossLink "LatheGeometry/phiStart:property"}}{{/crossLink}} property changes.
-                     * @event phiStart
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("phiStart", this._phiStart);
                 },
 
                 get: function () {
@@ -278,8 +248,6 @@
 
             /**
              * Angle at which this LatheGeometry's rotation starts.
-             *
-             * Fires a {{#crossLink "LatheGeometry/phiLength:event"}}{{/crossLink}} event on change.
              *
              * @property phiLength
              * @default 1
@@ -303,14 +271,6 @@
                     this._phiLength = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this LatheGeometry's {{#crossLink "LatheGeometry/phiLength:property"}}{{/crossLink}} property changes.
-                     * @event phiLength
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("phiLength", this._phiLength);
                 },
 
                 get: function () {
@@ -320,8 +280,6 @@
 
             /**
              * The LatheGeometry's number of segments of rotation.
-             *
-             * Fires a {{#crossLink "LatheGeometry/segments:event"}}{{/crossLink}} event on change.
              *
              * @property segments
              * @default 4
@@ -345,14 +303,6 @@
                     this._segments = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this LatheGeometry's {{#crossLink "LatheGeometry/segments:property"}}{{/crossLink}} property changes.
-                     * @event segments
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("segments", this._segments);
                 },
 
                 get: function () {

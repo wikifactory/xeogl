@@ -117,8 +117,6 @@ xeogl.PathGeometry = xeogl.Geometry.extend({
         /**
          * The Path for this PathGeometry.
          *
-         * Fires a {{#crossLink "PathGeometry/path:event"}}{{/crossLink}} event on change.
-         *
          * @property path
          * @type {Path}
          */
@@ -126,11 +124,6 @@ xeogl.PathGeometry = xeogl.Geometry.extend({
 
             set: function (value) {
 
-                /**
-                 * Fired whenever this CameraPaths's {{#crossLink "CameraPath/path:property"}}{{/crossLink}} property changes.
-                 * @event path
-                 * @param value The property's new value
-                 */
                 this._attach({
                     name: "path",
                     type: "xeogl.Curve",
@@ -153,8 +146,6 @@ xeogl.PathGeometry = xeogl.Geometry.extend({
         /**
          * The number of segments in this PathGeometry.
          *
-         * Fires a {{#crossLink "PathGeometry/divisions:event"}}{{/crossLink}} event on change.
-         *
          * @property divisions
          * @default 6
          * @type {Number}
@@ -168,8 +159,6 @@ xeogl.PathGeometry = xeogl.Geometry.extend({
                 this._divisions = value;
 
                 this._needUpdate();
-
-                this.fire("divisions", this._divisions);
             },
 
             get: function () {

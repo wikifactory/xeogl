@@ -88,8 +88,6 @@
             /**
              This Fresnel's edge color.
 
-             Fires an {{#crossLink "Fresnel/edgeColor:event"}}{{/crossLink}} event on change.
-
              @property edgeColor
              @default [0.0, 0.0, 0.0]
              @type Float32Array
@@ -101,14 +99,6 @@
                     this._state.edgeColor.set(value || [0.0, 0.0, 0.0]);
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Fresnel's {{#crossLink "Fresnel/edgeColor:property"}}{{/crossLink}} property changes.
-
-                     @event edgeColor
-                     @param value The property's new value
-                     */
-                    this.fire("edgeColor", this._state.edgeColor);
                 },
 
                 get: function () {
@@ -118,8 +108,6 @@
 
             /**
              This Fresnel's center color.
-
-             Fires an {{#crossLink "Fresnel/centerColor:event"}}{{/crossLink}} event on change.
 
              @property centerColor
              @default [1.0, 1.0, 1.0]
@@ -132,14 +120,6 @@
                     this._state.centerColor.set(value || [1.0, 1.0, 1.0]);
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Fresnel's {{#crossLink "Fresnel/centerColor:property"}}{{/crossLink}} property changes.
-
-                     @event centerColor
-                     @param value The property's new value
-                     */
-                    this.fire("centerColor", this._state.centerColor);
                 },
 
                 get: function () {
@@ -149,8 +129,6 @@
 
             /**
              * Indicates this Fresnel's edge bias.
-             *
-             * Fires a {{#crossLink "Fresnel/edgeBias:event"}}{{/crossLink}} event on change.
              *
              * @property edgeBias
              * @default 0
@@ -163,14 +141,6 @@
                     this._state.edgeBias = value || 0;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this Fresnel's {{#crossLink "Fresnel/edgeBias:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event edgeBias
-                     * @param value The property's new value
-                     */
-                    this.fire("edgeBias", this._state.edgeBias);
                 },
 
                 get: function () {
@@ -180,8 +150,6 @@
 
             /**
              * Indicates this Fresnel's center bias.
-             *
-             * Fires a {{#crossLink "Fresnel/centerBias:event"}}{{/crossLink}} event on change.
              *
              * @property centerBias
              * @default 1
@@ -194,14 +162,6 @@
                     this._state.centerBias = (value !== undefined && value !== null) ? value : 1;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this Fresnel's {{#crossLink "Fresnel/centerBias:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event centerBias
-                     * @param value The property's new value
-                     */
-                    this.fire("centerBias", this._state.centerBias);
                 },
 
                 get: function () {
@@ -211,8 +171,6 @@
 
             /**
              * Indicates this Fresnel's power.
-             *
-             * Fires a {{#crossLink "Fresnel/power:event"}}{{/crossLink}} event on change.
              *
              * @property power
              * @default 1
@@ -225,14 +183,6 @@
                     this._state.power = (value !== undefined && value !== null) ? value : 1;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     * Fired whenever this Fresnel's {{#crossLink "Fresnel/power:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event power
-                     * @param value The property's new value
-                     */
-                    this.fire("power", this._state.power);
                 },
 
                 get: function () {

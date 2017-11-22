@@ -659,8 +659,6 @@
 
              You can set this to a new color at any time.
 
-             Fires a {{#crossLink "Canvas/backgroundColor:event"}}{{/crossLink}} event on change.
-
              @property backgroundColor
              @type Float32Array
              @default null
@@ -682,13 +680,6 @@
                             this._backgroundElement.style.background = rgb;
                         }
                     }
-
-                    /**
-                     Fired whenever this Canvas's {{#crossLink "Canvas/backgroundColor:property"}}{{/crossLink}} property changes.
-                     @event backgroundColor
-                     @param value The property's new value
-                     */
-                    this.fire("backgroundColor", this._backgroundColor);
                 },
 
                 get: function () {
@@ -700,8 +691,6 @@
              URL of a background image for the canvas. This is overrided by {{#crossLink "Canvas/backgroundColor/property"}}{{/crossLink}}.
 
              You can set this to a new file path at any time.
-
-             Fires a {{#crossLink "Canvas/background:event"}}{{/crossLink}} event on change.
 
              @property backgroundImage
              @type String
@@ -730,13 +719,6 @@
                         var rgb = "rgb(" + Math.round(this._backgroundColor[0] * 255) + ", " + Math.round(this._backgroundColor[1] * 255) + "," + Math.round(this._backgroundColor[2] * 255) + ")";
                         this._backgroundElement.style.background = rgb;
                     }
-
-                    /**
-                     Fired whenever this Canvas's {{#crossLink "Canvas/backgroundImage:property"}}{{/crossLink}} property changes.
-                     @event backgroundImage
-                     @param value The property's new value
-                     */
-                    this.fire("backgroundImage", this._backgroundImageSrc);
                 },
 
                 get: function () {
@@ -785,8 +767,6 @@
                             document.webkitExitFullscreen();
                         }
                     }
-
-                    this.fire("fullscreen", Document.fullScreen);
                 },
 
                 get: function () {

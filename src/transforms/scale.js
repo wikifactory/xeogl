@@ -113,7 +113,6 @@
 
             /**
              * Vector indicating a scale factor for each axis.
-             * Fires an {{#crossLink "Scale/xyz:event"}}{{/crossLink}} event on change.
              * @property xyz
              * @default [1,1,1]
              * @type {Float32Array}
@@ -125,14 +124,6 @@
                     (this._xyz = this._xyz || new xeogl.math.vec3()).set(value || [1, 1, 1]);
 
                     this._needUpdate(0);
-
-                    /**
-                     Fired whenever this Scale's {{#crossLink "Scale/xyz:property"}}{{/crossLink}} property changes.
-
-                     @event xyz
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("xyz", this._xyz);
                 },
 
                 get: function () {

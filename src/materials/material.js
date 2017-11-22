@@ -29,7 +29,11 @@
         type: "xeogl.Material",
 
         _init: function () {
+            xeogl.stats.memory.materials++;
+        },
 
+        _destroy: function() {
+            xeogl.stats.memory.materials--;
         }
     });
 

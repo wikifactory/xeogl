@@ -294,13 +294,6 @@
                     self._needUpdate();
 
                     /**
-                     * Fired whenever this Texture's  {{#crossLink "Texture/image:property"}}{{/crossLink}} property changes.
-                     * @event image
-                     * @param value {HTML Image} The property's new value
-                     */
-                    self.fire("image", self._image);
-
-                    /**
                      * Fired whenever this Texture has loaded the
                      * image file that its {{#crossLink "Texture/src:property"}}{{/crossLink}} property currently points to.
                      * @event loaded
@@ -338,8 +331,6 @@
             /**
              * Indicates an HTML DOM Image object to source this Texture from.
              *
-             * Fires an {{#crossLink "Texture/image:event"}}{{/crossLink}} event on change.
-             *
              * Sets the {{#crossLink "Texture/src:property"}}{{/crossLink}} property to null.
              *
              * @property image
@@ -357,13 +348,6 @@
                     this._srcDirty = false;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's  {{#crossLink "Texture/image:property"}}{{/crossLink}} property changes.
-                     * @event image
-                     * @param value {HTML Image} The property's new value
-                     */
-                    this.fire("image", this._image);
                 },
 
                 get: function () {
@@ -373,8 +357,6 @@
 
             /**
              * Indicates a path to an image file to source this Texture from.
-             *
-             * Fires a {{#crossLink "Texture/src:event"}}{{/crossLink}} event on change.
              *
              * Sets the {{#crossLink "Texture/image:property"}}{{/crossLink}} property to null.
              *
@@ -393,14 +375,6 @@
                     this._srcDirty = true;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's {{#crossLink "Texture/src:property"}}{{/crossLink}} property changes.
-                     * @event src
-                     * @param value The property's new value
-                     * @type String
-                     */
-                    this.fire("src", this._src);
                 },
 
                 get: function () {
@@ -410,8 +384,6 @@
 
             /**
              * 2D translation vector that will be added to this Texture's *S* and *T* coordinates.
-             *
-             * Fires a {{#crossLink "Texture/translate:event"}}{{/crossLink}} event on change.
              *
              * @property translate
              * @default [0, 0]
@@ -425,13 +397,6 @@
                     this._matrixDirty = true;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's   {{#crossLink "Texture/translate:property"}}{{/crossLink}} property changes.
-                     * @event translate
-                     * @param value {Array(Number)} The property's new value
-                     */
-                    this.fire("translate", this._translate);
                 },
 
                 get: function () {
@@ -441,8 +406,6 @@
 
             /**
              * 2D scaling vector that will be applied to this Texture's *S* and *T* coordinates.
-             *
-             * Fires a {{#crossLink "Texture/scale:event"}}{{/crossLink}} event on change.
              *
              * @property scale
              * @default [1, 1]
@@ -456,13 +419,6 @@
                     this._matrixDirty = true;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's   {{#crossLink "Texture/scale:property"}}{{/crossLink}} property changes.
-                     * @event scale
-                     * @param value {Array(Number)} The property's new value
-                     */
-                    this.fire("scale", this._scale);
                 },
 
                 get: function () {
@@ -472,8 +428,6 @@
 
             /**
              * Rotation, in degrees, that will be applied to this Texture's *S* and *T* coordinates.
-             *
-             * Fires a {{#crossLink "Texture/rotate:event"}}{{/crossLink}} event on change.
              *
              * @property rotate
              * @default 0
@@ -493,13 +447,6 @@
                     this._matrixDirty = true;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's  {{#crossLink "Texture/rotate:property"}}{{/crossLink}} property changes.
-                     * @event rotate
-                     * @param value {Number} The property's new value
-                     */
-                    this.fire("rotate", this._rotate);
                 },
 
                 get: function () {
@@ -540,9 +487,6 @@
              *     produce a texture value from each mipmap. The final texture value is a weighted
              *     average of those two values.
              *
-             *
-             * Fires a {{#crossLink "Texture/minFilter:event"}}{{/crossLink}} event on change.
-             *
              * @property minFilter
              * @default "linearMipmapLinear"
              * @type String
@@ -570,13 +514,6 @@
                     this._propsDirty = true;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's  {{#crossLink "Texture/minFilter:property"}}{{/crossLink}} property changes.
-                     * @event minFilter
-                     * @param value {String} The property's new value
-                     */
-                    this.fire("minFilter", this._state.minFilter);
                 },
 
                 get: function () {
@@ -594,9 +531,6 @@
              *     (in Manhattan distance) to the center of the pixel being textured.
              *     * **"linear"** - **(default)** - Uses the weighted average of the four texture elements that are
              *     closest to the center of the pixel being textured.
-             *
-             *
-             * Fires a {{#crossLink "Texture/magFilter:event"}}{{/crossLink}} event on change.
              *
              * @property magFilter
              * @default "linear"
@@ -620,13 +554,6 @@
                     this._propsDirty = true;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's  {{#crossLink "Texture/magFilter:property"}}{{/crossLink}} property changes.
-                     * @event magFilter
-                     * @param value {String} The property's new value
-                     */
-                    this.fire("magFilter", this._state.magFilter);
                 },
 
                 get: function () {
@@ -646,9 +573,6 @@
              *     set to *1 - frac ⁡ S* , where *frac ⁡ S* represents the fractional part of *S*.
              *     * **"repeat"** - **(default)** - causes the integer part of the *S* coordinate to be ignored; xeogl uses only the
              *     fractional part, thereby creating a repeating pattern.
-             *
-             *
-             * Fires a {{#crossLink "Texture/wrapS:event"}}{{/crossLink}} event on change.
              *
              * @property wrapS
              * @default "repeat"
@@ -672,13 +596,6 @@
                     this._propsDirty = true;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's  {{#crossLink "Texture/wrapS:property"}}{{/crossLink}} property changes.
-                     * @event wrapS
-                     * @param value {String} The property's new value
-                     */
-                    this.fire("wrapS", this._state.wrapS);
                 },
 
                 get: function () {
@@ -698,9 +615,6 @@
              *     set to *1 - frac ⁡ S* , where *frac ⁡ S* represents the fractional part of *T*.
              *     * **"repeat"** - **(default)** - Causes the integer part of the *T* coordinate to be ignored; xeogl uses only the
              *     fractional part, thereby creating a repeating pattern.
-             *
-             *
-             * Fires a {{#crossLink "Texture/wrapT:event"}}{{/crossLink}} event on change.
              *
              * @property wrapT
              * @default "repeat"
@@ -724,13 +638,6 @@
                     this._propsDirty = true;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's  {{#crossLink "Texture/wrapT:property"}}{{/crossLink}} property changes.
-                     * @event wrapT
-                     * @param value {String} The property's new value
-                     */
-                    this.fire("wrapT", this._state.wrapT);
                 },
 
                 get: function () {
@@ -740,8 +647,6 @@
 
             /**
              * Flips this Texture's source data along its vertical axis when true.
-             *
-             * Fires a {{#crossLink "Texture/flipY:event"}}{{/crossLink}} event on change.
              *
              * @property flipY
              * @default false
@@ -761,13 +666,6 @@
                     this._imageDirty = true; // flipY is used when loading image data, not when post-applying props
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this Texture's  {{#crossLink "Texture/flipY:property"}}{{/crossLink}} property changes.
-                     * @event flipY
-                     * @param value {String} The property's new value
-                     */
-                    this.fire("flipY", this._state.flipY);
                 },
 
                 get: function () {

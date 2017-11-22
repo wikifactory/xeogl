@@ -252,8 +252,6 @@
             /**
              * 3D point indicating the center position of this BoxGeometry.
              *
-             * Fires an {{#crossLink "BoxGeometry/center:event"}}{{/crossLink}} event on change.
-             *
              * @property center
              * @default [0,0,0]
              * @type {Float32Array}
@@ -265,13 +263,6 @@
                     (this._center = this._center || new xeogl.math.vec3()).set(value || [0, 0, 0]);
 
                     this._needUpdate();
-
-                    /**
-                     Fired whenever this BoxGeometry's {{#crossLink "BoxGeometry/center:property"}}{{/crossLink}} property changes.
-                     @event center
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("center", this._center);
                 },
 
                 get: function () {
@@ -281,8 +272,6 @@
 
             /**
              * The BoxGeometry's half-size on the X-axis.
-             *
-             * Fires a {{#crossLink "BoxGeometry/xsize:event"}}{{/crossLink}} event on change.
              *
              * @property xSize
              * @default 1
@@ -306,14 +295,6 @@
                     this._xSize = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this BoxGeometry's {{#crossLink "BoxGeometry/xSize:property"}}{{/crossLink}} property changes.
-                     * @event xSize
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("xSize", this._xSize);
                 },
 
                 get: function () {
@@ -323,8 +304,6 @@
 
             /**
              * The BoxGeometry's half-size on the Y-axis.
-             *
-             * Fires a {{#crossLink "BoxGeometry/ySize:event"}}{{/crossLink}} event on change.
              *
              * @property ySize
              * @default 1
@@ -348,14 +327,6 @@
                     this._ySize = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this BoxGeometry's {{#crossLink "BoxGeometry/ySize:property"}}{{/crossLink}} property changes.
-                     * @event ySize
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("ySize", this._ySize);
                 },
 
                 get: function () {
@@ -365,8 +336,6 @@
 
             /**
              * The BoxGeometry's half-size on the Z-axis.
-             *
-             * Fires a {{#crossLink "BoxGeometry/zSize:event"}}{{/crossLink}} event on change.
              *
              * @property zSize
              * @default 1
@@ -390,14 +359,6 @@
                     this._zSize = value;
 
                     this._needUpdate();
-
-                    /**
-                     * Fired whenever this BoxGeometry's {{#crossLink "BoxGeometry/zSize:property"}}{{/crossLink}} property changes.
-                     * @event zSize
-                     * @type Number
-                     * @param value The property's new value
-                     */
-                    this.fire("zSize", this._zSize);
                 },
 
                 get: function () {

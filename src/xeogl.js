@@ -162,6 +162,8 @@
                 uvs: 0,
                 indices: 0,
                 textures: 0,
+                transforms: 0,
+                materials: 0,
                 programs: 0
             },
             frame: {

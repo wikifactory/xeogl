@@ -108,8 +108,6 @@
 
              The quaternion elements.
 
-             Fires an {{#crossLink "Quaternion/xyzw:event"}}{{/crossLink}} event on change.
-
              @property xyzw
              @default [0,0,0,1]
              @type {Float32Array}
@@ -123,14 +121,6 @@
                     (this._xyzw = this._xyzw || new math.vec4()).set(value || math.identityQuaternion());
 
                     this.matrix = math.quaternionToMat4(this._xyzw, this._matrix || (this._matrix = xeogl.math.identityMat4()));
-
-                    /**
-                     Fired whenever this Quaternion's {{#crossLink "Quaternion/xyzw:property"}}{{/crossLink}} property changes.
-
-                     @event xyzw
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("xyzw", this._xyzw);
                 },
 
                 get: function () {
@@ -141,7 +131,6 @@
 
         /**
          Rotates this Quaternion.
-         Fires an {{#crossLink "Quaternion/xyzw:event"}}{{/crossLink}} event to notify of update to the Quaternion elements.
          @method rotate
          @param {Float32Array} angleAxis Rotation in angle-axis form.
          */

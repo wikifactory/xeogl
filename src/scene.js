@@ -404,7 +404,11 @@
 
                 // Auto-generated ID
 
-                c.id = xeogl.math.createUUID();
+                if (window.nextID === undefined) {
+                    window.nextID = 0;
+                }
+                //c.id = xeogl.math.createUUID();
+                c.id = window.nextID++;
 
                 while (this.components[c.id]) {
                     c.id = xeogl.math.createUUID();
@@ -460,14 +464,6 @@
                 xeogl.stats.components.models++;
             }
 
-
-            /**
-             * Fired whenever a component has been created within this Scene.
-             * @event componentCreated
-             * @param {Component} value The component that was created
-             */
-            this.fire("componentCreated", c, true);
-
             //self.log("Created " + c.type + " " + xeogl._inQuotes(c.id));
         },
 
@@ -511,13 +507,6 @@
 
                 delete this.models[c.id];
             }
-
-            /**
-             * Fired whenever a component within this Scene has been destroyed.
-             * @event componentDestroyed
-             * @param {Component} value The component that was destroyed
-             */
-            this.fire("componentDestroyed", c, true);
 
             //this.log("Destroyed " + c.type + " " + xeogl._inQuotes(c.id));
         },
@@ -634,14 +623,6 @@
                     }
 
                     this._ticksPerRender = value;
-
-                    /**
-                     Fired whenever this Scene's {{#crossLink "Scene/ticksPerRender:property"}}{{/crossLink}} property changes.
-
-                     @event ticksPerRender
-                     @param value {Boolean} The property's new value
-                     */
-                    this.fire("ticksPerRender", this._ticksPerRender);
                 },
 
                 get: function () {
@@ -680,14 +661,6 @@
                     this._passes = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Scene's {{#crossLink "Scene/passes:property"}}{{/crossLink}} property changes.
-
-                     @event passes
-                     @param value {Boolean} The property's new value
-                     */
-                    this.fire("passes", this._passes);
                 },
 
                 get: function () {
@@ -718,14 +691,6 @@
                     this._clearEachPass = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Scene's {{#crossLink "Scene/clearEachPass:property"}}{{/crossLink}} property changes.
-
-                     @event clearEachPass
-                     @param value {Boolean} The property's new value
-                     */
-                    this.fire("clearEachPass", this._clearEachPass);
                 },
 
                 get: function () {
@@ -1657,8 +1622,8 @@
                 if (this._dirtyEntities.hasOwnProperty(id)) {
                     entity = this._dirtyEntities[id];
                     if (entity._valid()) {
-                        entity._compileAsynch(); // FIXME: asynch compilation breaks when destroying xeogl.Clip components
-                        //entity._compile();
+                      //  entity._compileAsynch(); // FIXME: asynch compilation breaks when destroying xeogl.Clip components
+                        entity._compile();
                         delete this._dirtyEntities[id];
                         countCompiledEntities++;
                     }

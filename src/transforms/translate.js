@@ -114,7 +114,7 @@
 
             /**
              * Vector indicating a translation amount for each axis.
-             * Fires an {{#crossLink "Translate/xyz:event"}}{{/crossLink}} event on change.
+             *
              * @property xyz
              * @default [0,0,0]
              * @type {Float32Array}
@@ -126,13 +126,6 @@
                     (this._xyz = this._xyz || new xeogl.math.vec3()).set(value || [0, 0, 0]);
 
                     this._needUpdate(0);
-
-                    /**
-                     Fired whenever this Translate's {{#crossLink "Translate/xyz:property"}}{{/crossLink}} property changes.
-                     @event xyz
-                     @param value {Float32Array} The property's new value
-                     */
-                    this.fire("xyz", this._xyz);
                 },
 
                 get: function () {
