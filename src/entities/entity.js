@@ -311,8 +311,6 @@
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/camera:property"}}camera{{/crossLink}} when set to
              * a null or undefined value.
              *
-             * Fires an {{#crossLink "Entity/camera:event"}}{{/crossLink}} event on change.
-             *
              * @property camera
              * @type Camera
              */
@@ -324,12 +322,6 @@
 
                     this._setViewBoundaryDirty();
 
-                    /**
-                     * Fired whenever this Entity's  {{#crossLink "Entity/camera:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event camera
-                     * @param value The property's new value
-                     */
                     this._attach({
                         name: "camera",
                         type: "xeogl.Camera",
@@ -360,20 +352,12 @@
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/clips:property"}}clips{{/crossLink}} when set to
              * a null or undefined value.
              *
-             * Fires an {{#crossLink "Entity/clips:event"}}{{/crossLink}} event on change.
-             *
              * @property clips
              * @type Clips
              */
             clips: {
 
                 set: function (value) {
-
-                    /**
-                     * Fired whenever this Entity's  {{#crossLink "Entity/clips:property"}}{{/crossLink}} property changes.
-                     * @event clips
-                     * @param value The property's new value
-                     */
                     this._attach({
                         name: "clips",
                         type: "xeogl.Clips",
@@ -394,8 +378,6 @@
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/geometry:property"}}geometry{{/crossLink}}
              * (a simple box) when set to a null or undefined value.
              *
-             * Fires an {{#crossLink "Entity/geometry:event"}}{{/crossLink}} event on change.
-             *
              * Updates {{#crossLink "Entity/boundary"}}{{/crossLink}},
              * {{#crossLink "Entity/worldObb"}}{{/crossLink}} and
              * {{#crossLink "Entity/center"}}{{/crossLink}}
@@ -411,12 +393,6 @@
 
                     this._setWorldBoundaryDirty();
 
-                    /**
-                     * Fired whenever this Entity's {{#crossLink "Entity/geometry:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event geometry
-                     * @param value The property's new value
-                     */
                     this._attach({
                         name: "geometry",
                         type: "xeogl.Geometry",
@@ -447,21 +423,12 @@
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/lights:property"}}lights{{/crossLink}} when set to
              * a null or undefined value.
              *
-             * Fires an {{#crossLink "Entity/lights:event"}}{{/crossLink}} event on change.
-             *
              * @property lights
              * @type Lights
              */
             lights: {
 
                 set: function (value) {
-
-                    /**
-                     * Fired whenever this Entity's  {{#crossLink "Entity/lights:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event lights
-                     * @param value The property's new value
-                     */
                     this._attach({
                         name: "lights",
                         type: "xeogl.Lights",
@@ -481,8 +448,6 @@
              * Must be within the same {{#crossLink "Scene"}}Scene{{/crossLink}} as this Entity. Defaults to the parent
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/material:property"}}material{{/crossLink}} when set to
              * a null or undefined value.
-             *
-             * Fires an {{#crossLink "Entity/material:event"}}{{/crossLink}} event on change.
              *
              * @property material
              * @type Material
@@ -517,8 +482,6 @@
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/morphTargets:property"}}morphTargets{{/crossLink}} when set to
              * a null or undefined value.
              *
-             * Fires an {{#crossLink "Entity/morphTargets:event"}}{{/crossLink}} event on change.
-             *
              * @property morphTargets
              * @private
              * @type MorphTargets
@@ -552,8 +515,6 @@
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/transform:property"}}transform{{/crossLink}}
              * (an identity matrix) when set to a null or undefined value.
              *
-             * Fires an {{#crossLink "Entity/transform:event"}}{{/crossLink}} event on change.
-             *
              * Updates {{#crossLink "Entity/boundary"}}{{/crossLink}},
              * {{#crossLink "Entity/worldObb"}}{{/crossLink}} and
              * {{#crossLink "Entity/center"}}{{/crossLink}}
@@ -569,13 +530,6 @@
 
                     this._setWorldBoundaryDirty();
 
-                    /**
-                     * Fired whenever this Entity's {{#crossLink "Entity/transform:property"}}{{/crossLink}}
-                     * property changes.
-                     *
-                     * @event transform
-                     * @param value The property's new value
-                     */
                     this._attach({
                         name: "transform",
                         type: "xeogl.Transform",
@@ -617,22 +571,12 @@
              * defaults to the parent {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/viewport:property"}}viewport{{/crossLink}},
              * which automatically resizes to the canvas.
              *
-             * Fires an {{#crossLink "Entity/viewport:event"}}{{/crossLink}} event on change.
-             *
              * @property viewport
              * @type Viewport
              */
             viewport: {
 
                 set: function (value) {
-
-                    /**
-                     * Fired whenever this Entity's {{#crossLink "Entity/viewport:property"}}{{/crossLink}}
-                     * property changes.
-                     *
-                     * @event viewport
-                     * @param value The property's new value
-                     */
                     this._attach({
                         name: "viewport",
                         type: "xeogl.Viewport",
@@ -653,21 +597,12 @@
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/outline:property"}}Outline{{/crossLink}} when set to
              * a null or undefined value.
              *
-             * Fires an {{#crossLink "Entity/outline:event"}}{{/crossLink}} event on change.
-             *
              * @property outline
              * @type Outline
              */
             outline: {
 
                 set: function (value) {
-
-                    /**
-                     * Fired whenever this Entity's  {{#crossLink "Entity/Outline:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event Outline
-                     * @param value The property's new value
-                     */
                     this._attach({
                         name: "outline",
                         type: "xeogl.Outline",
@@ -688,21 +623,12 @@
              * {{#crossLink "Scene"}}Scene{{/crossLink}}'s default {{#crossLink "Scene/xray:property"}}XRay{{/crossLink}} when set to
              * a null or undefined value.
              *
-             * Fires an {{#crossLink "Entity/xray:event"}}{{/crossLink}} event on change.
-             *
              * @property xray
              * @type XRay
              */
             xray: {
 
                 set: function (value) {
-
-                    /**
-                     * Fired whenever this Entity's  {{#crossLink "Entity/XRay:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event XRay
-                     * @param value The property's new value
-                     */
                     this._attach({
                         name: "xray",
                         type: "xeogl.XRay",
@@ -721,8 +647,6 @@
 
              The Entity is only rendered when {{#crossLink "Entity/visible:property"}}{{/crossLink}} is true and
              {{#crossLink "Entity/culled:property"}}{{/crossLink}} is false.
-             
-             Fires a {{#crossLink "Entity/visible:event"}}{{/crossLink}} event on change.
 
              @property visible
              @default true
@@ -735,14 +659,6 @@
                     this._state.visible =  value !== false;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Entity's {{#crossLink "Entity/visible:property"}}{{/crossLink}} property changes.
-
-                     @event visible
-                     @param value {Boolean} The property's new value
-                     */
-                    this.fire("visible",  this._state.visible);
                 },
 
                 get: function () {
@@ -756,8 +672,6 @@
              The Entity is only rendered when {{#crossLink "Entity/visible:property"}}{{/crossLink}} is true and
              {{#crossLink "Entity/culled:property"}}{{/crossLink}} is false.
 
-             Fires a {{#crossLink "Entity/culled:event"}}{{/crossLink}} event on change.
-
              @property culled
              @default false
              @type Boolean
@@ -769,14 +683,6 @@
                     this._state.culled =  !!value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Entity's {{#crossLink "Entity/culled:property"}}{{/crossLink}} property changes.
-
-                     @event culled
-                     @param value {Boolean} The property's new value
-                     */
-                    this.fire("culled",  this._state.culled);
                 },
 
                 get: function () {
@@ -788,8 +694,6 @@
              Indicates whether this entity is pickable or not.
 
              Picking is done via calls to {{#crossLink "Canvas/pick:method"}}Canvas#pick{{/crossLink}}.
-
-             Fires a {{#crossLink "Entity/pickable:event"}}{{/crossLink}} event on change.
 
              @property pickable
              @default true
@@ -809,14 +713,6 @@
 
                     // No need to trigger a render;
                     // state is only used when picking
-
-                    /**
-                     * Fired whenever this Entity's {{#crossLink "Entity/pickable:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event pickable
-                     * @param value The property's new value
-                     */
-                    this.fire("pickable", this._state.pickable);
                 },
 
                 get: function () {
@@ -826,8 +722,6 @@
 
             /**
              Indicates whether this Entity is clippable by {{#crossLink "Clips"}}{{/crossLink}} components.
-
-             Fires a {{#crossLink "Entity/clippable:event"}}{{/crossLink}} event on change.
 
              @property clippable
              @default true
@@ -846,14 +740,6 @@
                     this._state.clippable = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Entity's {{#crossLink "Entity/clippable:property"}}{{/crossLink}} property changes.
-
-                     @event clippable
-                     @param value The property's new value
-                     */
-                    this.fire("clippable", this._state.clippable);
                 },
 
                 get: function () {
@@ -868,8 +754,6 @@
 
              For example, when set false, the {{#crossLink "Entity/worldBoundary:property"}}World-space boundary{{/crossLink}} of all attached {{#crossLink "Entity"}}Entities{{/crossLink}} would not be considered when calculating the {{#crossLink "Scene/worldBoundary:property"}}World-space boundary{{/crossLink}} of their
              {{#crossLink "Scene"}}{{/crossLink}}.
-
-             Fires a {{#crossLink "Entity/collidable:event"}}{{/crossLink}} event on change.
 
              @property collidable
              @default true
@@ -886,14 +770,6 @@
                     }
 
                     this._state.collidable = value;
-
-                    /**
-                     Fired whenever this Entity's {{#crossLink "Entity/collidable:property"}}{{/crossLink}} property changes.
-
-                     @event collidable
-                     @param value The property's new value
-                     */
-                    this.fire("collidable", this._state.collidable);
                 },
 
                 get: function () {
@@ -904,8 +780,6 @@
 
             /**
              Indicates whether this Entity casts shadows.
-
-             Fires a {{#crossLink "Entity/castShadow:event"}}{{/crossLink}} event on change.
 
              @property castShadow
              @default true
@@ -924,14 +798,6 @@
                     this._state.castShadow = value;
 
                     this._renderer.imageDirty = true; // Re-render in next shadow map generation pass
-
-                    /**
-                     Fired whenever this Entity's {{#crossLink "Entity/castShadow:property"}}{{/crossLink}} property changes.
-
-                     @event castShadow
-                     @param value The property's new value
-                     */
-                    this.fire("castShadow", this._state.castShadow);
                 },
 
                 get: function () {
@@ -941,8 +807,6 @@
 
             /**
              Indicates whether this Entity receives shadows.
-
-             Fires a {{#crossLink "Entity/receiveShadow:event"}}{{/crossLink}} event on change.
 
              @property receiveShadow
              @default true
@@ -963,14 +827,6 @@
                     this._state.hash = value ? "/mod/rs;" : "/mod;";
 
                     this.fire("dirty", this); // Now need to (re)compile shaders to include/exclude shadow mapping
-
-                    /**
-                     Fired whenever this Entity's {{#crossLink "Entity/receiveShadow:property"}}{{/crossLink}} property changes.
-
-                     @event receiveShadow
-                     @param value The property's new value
-                     */
-                    this.fire("receiveShadow", this._state.receiveShadow);
                 },
 
                 get: function () {
@@ -982,8 +838,6 @@
              Indicates whether this Entity is rendered with an outline.
 
              The outline effect is configured via the Entity's {{#crossLink "Entity/outline:property"}}outline{{/crossLink}} component.
-
-             Fires a {{#crossLink "Entity/outlined:event"}}{{/crossLink}} event on change.
 
              @property outlined
              @default false
@@ -1002,14 +856,6 @@
                     this._state.outlined = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Entity' {{#crossLink "Entity/outlined:property"}}{{/crossLink}} property changes.
-
-                     @event outlined
-                     @param value The property's new value
-                     */
-                    this.fire("outlined", this._state.outlined);
                 },
 
                 get: function () {
@@ -1021,8 +867,6 @@
              Indicates whether this Entity is rendered X-rayed (transparent).
 
              The X-ray effect is configured via the Entity's {{#crossLink "Entity/xray:property"}}outline{{/crossLink}} component.
-
-             Fires a {{#crossLink "Entity/xrayed:event"}}{{/crossLink}} event on change.
 
              @property xrayed
              @default false
@@ -1041,14 +885,6 @@
                     this._state.xrayed = value;
 
                     this._renderer.imageDirty = true;
-
-                    /**
-                     Fired whenever this Entity's {{#crossLink "Entity/xrayed:property"}}{{/crossLink}} property changes.
-
-                     @event xrayed
-                     @param value The property's new value
-                     */
-                    this.fire("xrayed", this._state.xrayed);
                 },
 
                 get: function () {
@@ -1061,8 +897,6 @@
              *
              * This can be set on multiple transparent Entities, to make them render in a specific order   
              * for correct alpha blending.
-             *
-             * Fires a {{#crossLink "Layer/layer:event"}}{{/crossLink}} event on change.
              *
              * @property layer
              * @default 0
@@ -1086,14 +920,6 @@
                     this._state.layer = value;
 
                     this._renderer.stateOrderDirty = true;
-
-                    /**
-                     * Fired whenever this Entity's  {{#crossLink "Layer/layer:property"}}{{/crossLink}} property changes.
-                     *
-                     * @event layer
-                     * @param value The property's new value
-                     */
-                    this.fire("layer", this._state.layer);
                 },
 
                 get: function () {
@@ -1106,8 +932,6 @@
              *
              * Setting this true will disable the effect of {{#crossLink "Lookat"}}view transform{{/crossLink}}
              * translations for this Entity, while still alowing it to rotate. This is useful for skybox Entities.
-
-             * Fires an {{#crossLink "Entity/stationary:event"}}{{/crossLink}} event on change.
              *
              * @property stationary
              * @default false
@@ -1128,13 +952,6 @@
                   //  this._state.hash = (this._state.stationary ? "a;" : ";");
 
                     this.fire("dirty", this);
-
-                    /**
-                     * Fired whenever this Entity's {{#crossLink "Entity/stationary:property"}}{{/crossLink}} property changes.
-                     * @event stationary
-                     * @param value The property's new value
-                     */
-                    this.fire('stationary', this._state.stationary);
                 },
 
                 get: function () {
@@ -1151,8 +968,6 @@
                * **"spherical"** - Entity is billboarded to face the viewpoint, rotating both vertically and horizontally.
                * **"cylindrical"** - Entity is billboarded to face the viewpoint, rotating only about its vertically
                   axis. Use this mode for things like trees on a landscape.
-             
-              Fires an {{#crossLink "Entity/billboard:event"}}{{/crossLink}} event on change.
              
               @property billboard
               @default "none"
@@ -1183,13 +998,6 @@
                     this._state.hash = (this._state.active ? "a;" : ";") + (this._state.billboard ? "s;" : ";");
 
                     this.fire("dirty", this);
-
-                    /**
-                     * Fired whenever this Entity's {{#crossLink "Entity/billboard:property"}}{{/crossLink}} property changes.
-                     * @event billboard
-                     * @param value The property's new value
-                     */
-                    this.fire('billboard', this._state.billboard);
                 },
 
                 get: function () {
