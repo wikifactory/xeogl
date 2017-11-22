@@ -640,8 +640,6 @@
              *
              * Accepted values are 'static', 'dynamic' and 'stream'.
              *
-             * Fires a {{#crossLink "Geometry/usage:event"}}{{/crossLink}} event on change.
-             *
              * @property usage
              * @default "triangles"
              * @type String
@@ -691,14 +689,6 @@
                     this._scheduleGeometryUpdate();
 
                     this.fire("dirty", true);
-
-                    /**
-                     * Fired whenever this Geometry's {{#crossLink "Geometry/usage:property"}}{{/crossLink}} property changes.
-                     * @event usage
-                     * @type String
-                     * @param value The property's new value
-                     */
-                    this.fire("usage", this._state.usageName);
                 },
 
                 get: function () {
@@ -710,8 +700,6 @@
              * The Geometry's primitive type.
              *
              * Valid types are: 'points', 'lines', 'line-loop', 'line-strip', 'triangles', 'triangle-strip' and 'triangle-fan'.
-             *
-             * Fires a {{#crossLink "Geometry/primitive:event"}}{{/crossLink}} event on change.
              *
              * @property primitive
              * @default "triangles"
@@ -776,14 +764,6 @@
                     this._renderer.imageDirty = true;
 
                     this.fire("dirty", true);
-
-                    /**
-                     * Fired whenever this Geometry's {{#crossLink "Geometry/primitive:property"}}{{/crossLink}} property changes.
-                     * @event primitive
-                     * @type String
-                     * @param value The property's new value
-                     */
-                    this.fire("primitive", this._state.primitiveName);
                 },
 
                 get: function () {
@@ -796,8 +776,6 @@
              *
              * This property is a one-dimensional, flattened array - use  {{#crossLink "xeogl.math/flatten:method"}}{{/crossLink}} to
              * convert two-dimensional arrays for assignment to this property.
-             *
-             * Fires a {{#crossLink "Geometry/positions:event"}}{{/crossLink}} event on change.
              *
              * @property positions
              * @default null
@@ -819,8 +797,6 @@
 
             /**
              * The Geometry's vertex normal vectors array.
-             *
-             * Fires a {{#crossLink "Geometry/normals:event"}}{{/crossLink}} event on change.
              *
              * @property normals
              * @default null
@@ -990,8 +966,6 @@
              * When true, causes this Geometry to auto-generate its {{#crossLink "Geometry/normals:property"}}{{/crossLink}} on the
              * next {{#crossLink "Scene"}}{{/crossLink}} {{#crossLink "Scene/tick:event"}}{{/crossLink}} event.
              *
-             * Fires an {{#crossLink "Geometry/autoNormals:event"}}{{/crossLink}} event on change.
-             *
              * @property autoNormals
              * @default  false
              * @type Boolean
@@ -1014,14 +988,6 @@
 
                     this._hashDirty = true;
                     this.fire("dirty", true);
-
-                    /**
-                     * Fired whenever this Geometry's {{#crossLink "Geometry/autoNormals:property"}}{{/crossLink}} property changes.
-                     * @event autoNormals
-                     * @type Boolean
-                     * @param value The property's new value
-                     */
-                    this.fire("autoNormals", this._state.autoNormals);
                 },
 
                 get: function () {
@@ -1088,12 +1054,7 @@
                 this.fire("dirty", true);
             }
 
-            /**
-             * Fired whenever this Geometry's {{#crossLink "Geometry/positions:property"}}{{/crossLink}} property changes.
-             * @event positions
-             * @param value The property's new value
-             */
-            this.fire("positions", this._positions);
+            this._renderer.imageDirty = true;
 
             /**
              * Fired whenever this Geometry's {{#crossLink "Geometry/localBoundary:property"}}{{/crossLink}} property changes.
@@ -1106,8 +1067,6 @@
              * @param value The property's new value
              */
             this.fire("localBoundary", true);
-
-            this._renderer.imageDirty = true;
         },
 
         /**
@@ -1165,13 +1124,6 @@
                 this._hashDirty = true;
                 this.fire("dirty", true);
             }
-
-            /**
-             * Fired whenever this Geometry's {{#crossLink "Geometry/normals:property"}}{{/crossLink}} property changes.
-             * @event normals
-             * @param value The property's new value
-             */
-            this.fire("normals", this._normals);
 
             this._renderer.imageDirty = true;
         },
@@ -1232,13 +1184,6 @@
                 this.fire("dirty", true);
             }
 
-            /**
-             * Fired whenever this Geometry's {{#crossLink "Geometry/uvs:property"}}{{/crossLink}} property changes.
-             * @event uvs
-             * @param value The property's new value
-             */
-            this.fire("uvs", this._uvs);
-
             this._renderer.imageDirty = true;
         },
 
@@ -1297,13 +1242,6 @@
                 this._hashDirty = true;
                 this.fire("dirty", true);
             }
-
-            /**
-             * Fired whenever this Geometry's {{#crossLink "Geometry/colors:property"}}{{/crossLink}} property changes.
-             * @event colors
-             * @param value The property's new value
-             */
-            this.fire("colors", this._colors);
 
             this._renderer.imageDirty = true;
         },
@@ -1376,13 +1314,6 @@
                 this._hashDirty = true;
                 this.fire("dirty", true);
             }
-
-            /**
-             * Fired whenever this Geometry's {{#crossLink "Geometry/indices:property"}}{{/crossLink}} property changes.
-             * @event indices
-             * @param value The property's new value
-             */
-            this.fire("indices", this._indices);
 
             /**
              * Fired whenever this Geometry's {{#crossLink "Geometry/localBoundary:property"}}{{/crossLink}} property changes.
