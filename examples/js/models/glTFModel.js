@@ -157,7 +157,7 @@
              You can set this to a new file path at any time (except while loading), which will cause the GLTFModel to load components from
              the new file (after first destroying any components loaded from a previous file path).
 
-             Fires a {{#crossLink "GLTFModel/src:event"}}{{/crossLink}} event on change.
+             Fires a {{#crossLink "GLTFModel/loaded:event"}}{{/crossLink}} event when the glTF has loaded.
 
              @property src
              @type String
@@ -191,13 +191,6 @@
                     this._src = value;
 
                     xeogl.GLTFModel.load(this, this._src);
-
-                    /**
-                     Fired whenever this GLTFModel's {{#crossLink "GLTFModel/src:property"}}{{/crossLink}} property changes.
-                     @event src
-                     @param value The property's new value
-                     */
-                    this.fire("src", this._src);
                 },
 
                 get: function () {
