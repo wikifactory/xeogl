@@ -30,6 +30,16 @@
  * [KHR_materials_pbrSpecularGlossiness](https://github.com/KhronosGroup/glTF/blob/master/extensions/Khronos/KHR_materials_pbrSpecularGlossiness/README.md)
  * [KHR_materials_common](https://github.com/KhronosGroup/glTF/blob/master/extensions/Khronos/KHR_materials_common/README.md)
 
+ ## Options
+
+ The following options may be specified when loading glTF.
+
+ | Option | Type | Range | Default Value | Description |
+ |:--------:|:----:|:-----:|:-------------:|:-----:|:-----------:|
+ | flattenTransforms | Boolean |  | true | Flattens transform hierarchies. |
+ | staticGeometries | Boolean |  | false | When true, creates a fast and unmodifiable {{#crossLink "StaticGeometry"}}{{/crossLink}} for each geometry, instead of the usual {{#crossLink "Geometry"}}{{/crossLink}}. |
+ | lambertMaterials | Boolean |  | false | When true, gives each {{#crossLink "Entity"}}{{/crossLink}} the same {{#crossLink "LambertMaterial"}}{{/crossLink}} and a {{#crossLink "Entity/colorize:property"}}{{/crossLink}} set the to diffuse color extracted from the glTF material. This is typically used for CAD models with huge amounts of objects, and will ignore textures.|
+
  ## Usage
 
  ### Loading glTF
@@ -115,7 +125,7 @@
  * [Damaged Helmet with metal/rough PBR materials](../../examples/#importing_gltf_pbr_metallic_helmet)
  * [Gearbox with entity explorer](../../examples/#importing_gltf_explorer)
  * [Ensuring individual materials on GLTFModel entities](../../examples/#models_filter_uniqueMaterials)
- * [Baking transform hierarchies in a GLTFModel](../../examples/#models_filter_bakeTransforms)
+ * [Baking transform hierarchies in a GLTFModel](../../examples/#models_filter_flattenTransforms)
 
  @class GLTFModel
  @module xeogl
@@ -146,6 +156,13 @@
         _init: function (cfg) {
             this._super(cfg);
             this._src = null;
+            this._options = {
+                flattenTransforms: cfg.flattenTransforms !== false,
+                ignoreMaterials: !!cfg.ignoreMaterials,
+                staticGeometries: !!cfg.staticGeometries,
+                randomColors: !!cfg.randomColors,
+                lambertMaterials: !!cfg.lambertMaterials
+            };
             this.src = cfg.src;
         },
 
@@ -190,7 +207,7 @@
 
                     this._src = value;
 
-                    xeogl.GLTFModel.load(this, this._src);
+                    xeogl.GLTFModel.load(this, this._src, this._options);
                 },
 
                 get: function () {
@@ -217,14 +234,15 @@
      *
      * @param {Model} model Model to load into.
      * @param {String} src Path to glTF file.
+     * @param {Object} options Loading options.
      * @param {Function} [ok] Completion callback.
      */
-    xeogl.GLTFModel.load = function (model, src, ok) {
+    xeogl.GLTFModel.load = function (model, src, options, ok) {
 
         var spinner = model.scene.canvas.spinner;
         spinner.processes++;
 
-        loadGLTF(model, src, function () {
+        loadGLTF(model, src, options, function () {
 
                 spinner.processes--;
 
@@ -279,7 +297,7 @@
 
     var loadGLTF = (function () {
 
-        return function (model, src, ok, error) {
+        return function (model, src, options, ok, error) {
 
             loadJSON(src, function (response) { // OK
                     var json;
@@ -288,10 +306,15 @@
                     } catch (e) {
                         error(e);
                     }
-                    var options = {
-                        basePath: getBasePath(src)
+                    var options2 = { // TODO: Remove this temp cfg object
+                        basePath: getBasePath(src),
+                        flattenTransforms: options.flattenTransforms,
+                        ignoreMaterials: options.ignoreMaterials,
+                        staticGeometries: options.staticGeometries,
+                        randomColors: options.randomColors,
+                        lambertMaterials: options.lambertMaterials
                     };
-                    parseGLTF(json, src, options, model, ok, error);
+                    parseGLTF(json, src, options2, model, ok, error);
                 },
                 error);
         };
@@ -355,6 +378,11 @@
                 src: src,
                 loadBuffer: options.loadBuffer,
                 basePath: options.basePath,
+                flattenTransforms: !!options.flattenTransforms,
+                ignoreMaterials: !!options.ignoreMaterials,
+                staticGeometries: !!options.staticGeometries,
+                randomColors: !!options.randomColors,
+                lambertMaterials: !!options.lambertMaterials,
                 json: json,
                 scene: model.scene,
                 model: model,
@@ -366,7 +394,9 @@
                 loadBufferViews(ctx);
                 loadAccessors(ctx);
                 loadTextures(ctx);
-                loadMaterials(ctx);
+                if (!ctx.ignoreMaterials) {
+                    loadMaterials(ctx);
+                }
                 loadMeshes(ctx);
                 loadDefaultScene(ctx);
 
@@ -554,8 +584,13 @@
                 var material;
                 for (var i = 0, len = materialsInfo.length; i < len; i++) {
                     materialInfo = materialsInfo[i];
-                    material = loadMaterial(ctx, materialInfo);
-                    ctx.model.add(material);
+                    if (ctx.lambertMaterials) {
+                        // Substitute RGBA for material, to use fast flat shading instead
+                        material = loadMaterialColorize(ctx, materialInfo);
+                    } else {
+                        material = loadMaterial(ctx, materialInfo);
+                        ctx.model.add(material);
+                    }
                     materialInfo._material = material;
                 }
             }
@@ -787,6 +822,70 @@
             return new xeogl.PhongMaterial(ctx.scene, cfg);
         }
 
+        // Extract diffuse/baseColor and alpha into RGBA Entity 'colorize' property
+        function loadMaterialColorize(ctx, materialInfo) {
+
+            var json = ctx.json;
+            var colorize = new Float32Array([1, 1, 1, 1]);
+
+            var extensions = materialInfo.extensions;
+            if (extensions) {
+
+                // Specular PBR material
+
+                var specularPBR = extensions["KHR_materials_pbrSpecularGlossiness"];
+                if (specularPBR) {
+                    var diffuseFactor = specularPBR.diffuseFactor;
+                    if (diffuseFactor !== null && diffuseFactor !== undefined) {
+                        colorize.set(diffuseFactor);
+                    }
+                }
+
+                // Common Phong, Blinn, Lambert or Constant materials
+
+                var common = extensions["KHR_materials_common"];
+                if (common) {
+
+                    var technique = common.technique;
+                    var values = common.values || {};
+
+                    var blinn = technique === "BLINN";
+                    var phong = technique === "PHONG";
+                    var lambert = technique === "LAMBERT";
+                    var constant = technique === "CONSTANT";
+
+                    var diffuse = values.diffuse;
+                    if (diffuse && (blinn || phong || lambert)) {
+                        if (!xeogl._isString(diffuse)) {
+                            colorize.set(diffuse);
+                        }
+                    }
+
+                    var transparency = values.transparency;
+                    if (transparency !== null && transparency !== undefined) {
+                        colorize[3] = transparency;
+                    }
+
+                    var transparent = values.transparent;
+                    if (transparent !== null && transparent !== undefined) {
+                        colorize[3] = transparent;
+                    }
+                }
+            }
+
+            // Metallic PBR naterial
+
+            var metallicPBR = materialInfo.pbrMetallicRoughness;
+            if (metallicPBR) {
+                var baseColorFactor = metallicPBR.baseColorFactor;
+                if (baseColorFactor) {
+                    colorize.set(baseColorFactor);
+                }
+            }
+
+            return colorize;
+        }
+
         function loadMeshes(ctx) {
             var meshes = ctx.json.meshes;
             if (meshes) {
@@ -863,7 +962,8 @@
 
                     meshCfg = {};
 
-                    geometry = new xeogl.Geometry(ctx.scene, geometryCfg);
+                    geometry = new (ctx.staticGeometries ? xeogl.StaticGeometry : xeogl.Geometry)(ctx.scene, geometryCfg);
+
                     ctx.model.add(geometry);
                     meshCfg.geometry = geometry;
 
@@ -912,41 +1012,78 @@
         function loadNode(ctx, nodeIdx, nodeInfo, transform) {
             var json = ctx.json;
             var model = ctx.model;
+            var math = xeogl.math;
+            var matrix;
 
             if (nodeInfo.matrix) {
-                var matrix = nodeInfo.matrix;
-                transform = new xeogl.Transform(model, {
-                    matrix: matrix,
-                    parent: transform
-                });
-                model.add(transform);
+                matrix = nodeInfo.matrix;
+                if (ctx.flattenTransforms) {
+                    if (transform) {
+                        transform = xeogl.math.mulMat4(transform, matrix, xeogl.math.mat4());
+                    } else {
+                        transform = matrix;
+                    }
+                } else {
+                    transform = new xeogl.Transform(model, {
+                        matrix: matrix,
+                        parent: transform
+                    });
+                    model.add(transform);
+                }
             }
 
             if (nodeInfo.translation) {
                 var translation = nodeInfo.translation;
-                transform = new xeogl.Translate(model, {
-                    xyz: [translation[0], translation[1], translation[2]],
-                    parent: transform
-                });
-                model.add(transform);
+                if (ctx.flattenTransforms) {
+                    matrix = math.translationMat4v(translation);
+                    if (transform) {
+                        transform = xeogl.math.mulMat4(transform, matrix, matrix);
+                    } else {
+                        transform = matrix;
+                    }
+                } else {
+                    transform = new xeogl.Translate(model, {
+                        xyz: [translation[0], translation[1], translation[2]],
+                        parent: transform
+                    });
+                    model.add(transform);
+                }
             }
 
             if (nodeInfo.rotation) {
                 var rotation = nodeInfo.rotation;
-                transform = new xeogl.Quaternion(model, {
-                    xyzw: rotation,
-                    parent: transform
-                });
-                model.add(transform);
+                if (ctx.flattenTransforms) {
+                    matrix = math.quaternionToMat4(rotation);
+                    if (transform) {
+                        transform = xeogl.math.mulMat4(transform, matrix, matrix);
+                    } else {
+                        transform = matrix;
+                    }
+                } else {
+                    transform = new xeogl.Quaternion(model, {
+                        xyzw: rotation,
+                        parent: transform
+                    });
+                    model.add(transform);
+                }
             }
 
             if (nodeInfo.scale) {
                 var scale = nodeInfo.scale;
-                transform = new xeogl.Scale(model, {
-                    xyz: [scale[0], scale[1], scale[2]],
-                    parent: transform
-                });
-                model.add(transform);
+                if (ctx.flattenTransforms) {
+                    matrix = math.scalingMat4v(scale);
+                    if (transform) {
+                        transform = xeogl.math.mulMat4(transform, matrix, matrix);
+                    } else {
+                        transform = matrix;
+                    }
+                } else {
+                    transform = new xeogl.Scale(model, {
+                        xyz: [scale[0], scale[1], scale[2]],
+                        parent: transform
+                    });
+                    model.add(transform);
+                }
             }
 
             if (nodeInfo.mesh !== undefined) {
@@ -967,6 +1104,17 @@
                     var entity;
                     var numMeshes = meshes.length;
 
+                    var transform2 = null;
+                    if (transform) {
+                        if (ctx.flattenTransforms) {
+                            transform2 = new xeogl.Transform(model, {
+                                matrix: transform
+                            });
+                        } else {
+                            transform2 = transform;
+                        }
+                    }
+
                     for (var i = 0, len = numMeshes; i < len; i++) {
 
                         mesh = meshes[i];
@@ -976,22 +1124,43 @@
                         var meta = nodeInfo.extra || {};
                         meta.name = nodeInfo.name;
 
-                        entity = new xeogl.Entity(model, {
-                            id: entityId,
-                            meta: meta,
-                            material: mesh.material,
-                            geometry: mesh.geometry,
-                            transform: transform,
+                        if (window.numEntities === undefined) {
+                            window.numEntities = 0;
+                        }
 
-                            // Indicates that this Entity is freshly loaded -  increments the xeogl.Spinner#processes
-                            // count on the Scene Canvas, which will decrement again as soon as Entity is compiled
-                            // into the render graph, causing the Spinner to show until this Entity is visible
-                            loading: true // TODO: track loading state explicitely
-                        });
+                        window.numEntities++;
 
-                        object[entityId] = entity;
+                        if (window.numEntities < 100000) {
 
-                        model.add(entity);
+                            var entityCfg = {
+                                id: entityId,
+                                meta: meta,
+                                geometry: mesh.geometry,
+                                transform: transform2,
+                                // Indicates that this Entity is freshly loaded -  increments the xeogl.Spinner#processes
+                                // count on the Scene Canvas, which will decrement again as soon as Entity is compiled
+                                // into the render graph, causing the Spinner to show until this Entity is visible
+                                loading: true
+                            };
+
+                            if (ctx.lambertMaterials) {
+                                if (!model.material) {
+                                    model.material = new xeogl.LambertMaterial(model, {
+                                        // Default properties
+                                    });
+                                }
+                                entityCfg.material = model.material;
+                                entityCfg.colorize = mesh.material; // [R,G,B,A]
+                            } else if (!ctx.ignoreMaterials) {
+                                entityCfg.material = mesh.material;
+                            }
+
+                            model.log("Loading object ");
+
+                            entity = new xeogl.Entity(model, entityCfg);
+                            object[entityId] = entity;
+                            model.add(entity);
+                        }
                     }
                 }
             }
