@@ -3,7 +3,8 @@
   "main": "src/xeogl.js",
   "files": [
     "src",
-    "build"
+    "build",
+    "package.json"
   ],
   "title": "xeogl",
   "version": "0.7.1",
