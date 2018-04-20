@@ -1,5 +1,6 @@
 {
   "name": "xeogl",
+  "main": "src/xeogl.js",
   "title": "xeogl",
   "version": "0.7.0",
   "description": "A WebGL-based 3D visualization engine from xeoLabs",
